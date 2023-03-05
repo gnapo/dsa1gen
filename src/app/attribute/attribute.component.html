@@ -16,8 +16,8 @@
   <ul *ngIf="this.ATPAups > 0">Verfügbare Steigerungen: {{this.ATPAups}}</ul>
 </div>
 <div *ngIf="this.held.typus">
-  <app-statline [value]="this.held.LeP ?? 0" (buttonClicked)="incrementLeP()" [drawButton]="this.statups > 0">LeP</app-statline>
-  <app-statline *ngIf="this.held.AsP" [value]="this.held.AsP" (buttonClicked)="incrementAsP()" [drawButton]="this.statups > 0">AsP</app-statline>
+  <app-statline [value]="this.held.LeP ?? 0" (buttonClicked)="incrementLeP()" [drawButton]="this.statups > 0" tt="Fügt 1W6 hinzu">LeP</app-statline>
+  <app-statline *ngIf="this.held.AsP" [value]="this.held.AsP" (buttonClicked)="incrementAsP()" [drawButton]="this.statups > 0" tt="Fügt 1W6 hinzu">AsP</app-statline>
   <ul *ngIf="this.statups > 0">Verfügbare Steigerungen: {{this.statups}}</ul>
 </div>
 <div *ngIf="this.held.typus">
