@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="this.sendValues()">
+  <ul>
+    <select formControlName="waffenState">
+      <option *ngFor="let state of availableWaffen()" [ngValue]="state">
+        {{ state.name }}
+      </option>
+    </select>
+  </ul>
+</form>

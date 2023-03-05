@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="this.sendValues()">
+  <ul>
+    <select formControlName="ruestungState">
+      <option *ngFor="let state of availableRuestungen()" [ngValue]="state">
+        {{ state.name }}
+      </option>
+    </select>
+  </ul>
+  <ul> Schild: <input type="checkbox" [checked]="this.hatSchild" (change)="changeShild()" ></ul>
+</form>
+

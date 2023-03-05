@@ -1,0 +1,7 @@
+div {
+  float: left;
+  border: 2px black;
+  border-style: solid;
+  width: 180px;
+  margin: 20px;
+}

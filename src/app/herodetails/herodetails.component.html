@@ -1,0 +1,5 @@
+
+<ul> <label>Name: <input size="12" (input)="sendName($event)" [value]="name"></label> </ul>
+<ul> Stufe: {{stufe}} <button *ngIf="typus && stufe < 21" (click)="lvlup()">+</button></ul>
+<ul> Typus: {{typus}}</ul>
+
