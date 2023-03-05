@@ -20,14 +20,15 @@
   <app-statline *ngIf="this.held.AsP" [value]="this.held.AsP" (buttonClicked)="incrementAsP()" [drawButton]="this.statups > 0">AsP</app-statline>
   <ul *ngIf="this.statups > 0">Verfügbare Steigerungen: {{this.statups}}</ul>
 </div>
+<div *ngIf="this.held.typus">
+  <app-ruestungpicker [typus]="this.held.typus" (RS)="setRS($event)" (minusGE)="setRuestungGEmalus($event)"> </app-ruestungpicker>
+  <app-waffenpicker [typus]="this.held.typus" (TPW)="setTPW($event)" (TPB)="setTPB($event)" (AT)="setWaffenAT($event)" (PA)="setWaffenPA($event)"></app-waffenpicker>
+</div>
 <div>
   <app-herodetails [(name)]="this.held.name" [stufe]="held.stufe" [typus]="held.typus" (levelup)="incrementStufe()"></app-herodetails>
 </div>
 <div *ngIf="nichtFinalerTypus()">
   <app-typuspicker [MU]="this.held.MU" [KL]="this.held.KL" [CH]="this.held.CH" [GE]="this.held.GE" [KK]="this.held.KK" [nachGenerierung]="this.held.stufe > 1" [typus]="this.held.typus" (changeTypus)="setTypus($event)" (setStartLeP)="setLeP($event)" (setStartAsP)="setAsP($event)" ></app-typuspicker>
 </div>
-<div *ngIf="this.held.typus">
-  <app-ruestungpicker [typus]="this.held.typus" (RS)="setRS($event)" (minusGE)="setRuestungGEmalus($event)"> </app-ruestungpicker>
-  <app-waffenpicker [typus]="this.held.typus" (TPW)="setTPW($event)" (TPB)="setTPB($event)" (AT)="setWaffenAT($event)" (PA)="setWaffenPA($event)"></app-waffenpicker>
-</div>
+
 
