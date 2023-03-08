@@ -1,3 +1,5 @@
+import {Typus} from "../typus";
+
 export interface Waffe {
   name: string,
   tpWuerfel: number,
@@ -5,4 +7,5 @@ export interface Waffe {
   AT: number,
   PA: number,
   BF: number,
+  typusDarf: Typus[]
 }

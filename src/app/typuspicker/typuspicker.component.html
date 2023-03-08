@@ -1,8 +1,9 @@
-<ul>Heldentypus</ul>
-<ul *ngIf="!nachGenerierung && this.typus === undefined"><button (click)="sendAbenteurer()" placement="right" tooltip="Keine Vorraussetzungen">Abenteurer</button></ul>
-<ul><span placement="right" tooltip="MU und KK ≥ 12 benötigt"><button [disabled]="MU < 12 || KK < 12" (click)="sendKrieger()" >Krieger</button></span></ul>
-<ul *ngIf="!nachGenerierung && this.typus === undefined"><span placement="right" tooltip="KK und GE ≥ 12"><button [disabled]=" KK < 12 || GE < 12" (click)="sendZwerg()" >Zwerg</button></span></ul>
-<ul *ngIf="!nachGenerierung && this.typus === undefined"><span placement="right" tooltip="KL und GE ≥ 12"><button [disabled]=" KL < 12 || GE < 12" (click)="sendElf()">Elf</button></span></ul>
-<ul *ngIf="!nachGenerierung && this.typus === undefined"><span placement="right" tooltip="KL und CH ≥ 12"><button [disabled]=" KL < 12 || CH < 12" (click)="sendMagier()" >Magier</button></span></ul>
-
+<mat-card-header><mat-card-title>Heldentypus</mat-card-title></mat-card-header>
+<mat-card-content>
+<ng-container *ngIf="!nachGenerierung && this.typus === undefined"><button mat-raised-button (click)="sendAbenteurer()" matTooltip="Keine Vorraussetzungen">Abenteurer</button></ng-container>
+<ng-container><span matTooltip="MU und KK ≥ 12 benötigt"><button mat-raised-button [disabled]="MU < 12 || KK < 12" (click)="sendKrieger()" >Krieger</button></span></ng-container>
+<ng-container *ngIf="!nachGenerierung && this.typus === undefined"><span matTooltip="KK und GE ≥ 12"><button mat-raised-button [disabled]=" KK < 12 || GE < 12" (click)="sendZwerg()" >Zwerg</button></span></ng-container>
+<ng-container *ngIf="!nachGenerierung && this.typus === undefined"><span matTooltip="KL und GE ≥ 12"><button mat-raised-button [disabled]=" KL < 12 || GE < 12" (click)="sendElf()">Elf</button></span></ng-container>
+<ng-container *ngIf="!nachGenerierung && this.typus === undefined"><span matTooltip="KL und CH ≥ 12"><button mat-raised-button [disabled]=" KL < 12 || CH < 12" (click)="sendMagier()" >Magier</button></span></ng-container>
+</mat-card-content>
 

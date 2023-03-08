@@ -1,5 +1,10 @@
 import {Waffe} from "./waffe";
+import {Typus} from "../typus";
 
+const ALLE_TYPEN: Typus[] = [Typus.Abenteurer,Typus.Elf, Typus.Krieger, Typus.Zwerg, Typus.Magier]
+const NICHT_MAGIER: Typus[] = [Typus.Abenteurer,Typus.Elf, Typus.Krieger, Typus.Zwerg]
+const NUR_KRIEGER: Typus[] = [Typus.Krieger]
+const NUR_MAGIER: Typus[] = [Typus.Magier]
 export const waffen: Waffe[] = [
   {
     name: "Messer",
@@ -8,6 +13,7 @@ export const waffen: Waffe[] = [
     AT: 0,
     PA: -5,
     BF: 5,
+    typusDarf: NICHT_MAGIER
   },
   {
     name: "Dolch",
@@ -16,6 +22,7 @@ export const waffen: Waffe[] = [
     AT: 0,
     PA: -4,
     BF: 3,
+    typusDarf: ALLE_TYPEN,
   },
   {
     name: "Schwerer Dolch",
@@ -24,6 +31,7 @@ export const waffen: Waffe[] = [
     AT: 0,
     PA: -2,
     BF: 3,
+    typusDarf: NICHT_MAGIER
   },
   {
     name: "Kurzschwert",
@@ -31,7 +39,8 @@ export const waffen: Waffe[] = [
     tpBonus: 2,
     AT: 0,
     PA: 0,
-    BF: 2
+    BF: 2,
+    typusDarf: NICHT_MAGIER,
   },
   {
     name: "Knüppel",
@@ -40,6 +49,7 @@ export const waffen: Waffe[] = [
     AT: -1,
     PA: -3,
     BF: 6,
+    typusDarf: NICHT_MAGIER
   },
   {
     name: "Wurfbeil (Nahkampf)",
@@ -48,6 +58,7 @@ export const waffen: Waffe[] = [
     AT: 0,
     PA: -4,
     BF: 4,
+    typusDarf: NICHT_MAGIER
   },
   {
     name: "Säbel",
@@ -56,6 +67,7 @@ export const waffen: Waffe[] = [
     AT: 0,
     PA: 0,
     BF: 2,
+    typusDarf: NICHT_MAGIER
   },
   {
     name: "Entermesser",
@@ -64,6 +76,7 @@ export const waffen: Waffe[] = [
     AT: 0,
     PA: -1,
     BF: 3,
+    typusDarf: NICHT_MAGIER
   },
   {
     name: "Schwert",
@@ -72,6 +85,7 @@ export const waffen: Waffe[] = [
     AT: 0,
     PA: 0,
     BF: 2,
+    typusDarf: NICHT_MAGIER
   },
   {
     name: "Kriegsbeil",
@@ -79,7 +93,7 @@ export const waffen: Waffe[] = [
     tpBonus: 4,
     AT: 0,
     PA: -3,
-    BF: 3,
+    BF: 3,typusDarf: NICHT_MAGIER
   },
   {
     name: "BastardSchwert",
@@ -88,6 +102,7 @@ export const waffen: Waffe[] = [
     AT: -2,
     PA: -3,
     BF: 2,
+    typusDarf: NUR_KRIEGER,
   },
   {
     name: "Zweihänder",
@@ -96,6 +111,7 @@ export const waffen: Waffe[] = [
     AT: -3,
     PA: -4,
     BF: 3,
+    typusDarf: NUR_KRIEGER,
   },
   {
     name: "Kriegshammer",
@@ -104,6 +120,7 @@ export const waffen: Waffe[] = [
     AT: -3,
     PA: -5,
     BF: 4,
+    typusDarf: NUR_KRIEGER,
   },
   {
     name: "Barbaren-Streitaxt",
@@ -112,5 +129,15 @@ export const waffen: Waffe[] = [
     AT: -4,
     PA: -6,
     BF: 3,
+    typusDarf: NUR_KRIEGER,
+  },
+  {
+    name: "Magierstab",
+    tpWuerfel: 1,
+    tpBonus: 2,
+    AT: -1,
+    PA: -3,
+    BF: 6,
+    typusDarf: NUR_MAGIER
   },
 ]

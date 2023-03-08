@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Typus} from "../typus";
 import {waffen} from "./waffen"
-import {Ruestung} from "../ruestungpicker/ruestung";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Waffe} from "./waffe";
 
@@ -21,7 +20,7 @@ export class WaffenpickerComponent implements OnInit{
 
   waffen = waffen
 
-  selectedWaffe: Waffe = waffen[6]
+  selectedWaffe: Waffe | undefined
 
 
 
@@ -40,11 +39,13 @@ export class WaffenpickerComponent implements OnInit{
   }
 
   sendValues() {
-    this.TPW.emit(this.selectedWaffe.tpWuerfel)
-    this.TPB.emit(this.selectedWaffe.tpBonus)
-    this.AT.emit(this.selectedWaffe.AT)
-    this.PA.emit(this.selectedWaffe.PA)
-    this.BF.emit(this.selectedWaffe.BF)
+    if (this.selectedWaffe) {
+      this.TPW.emit(this.selectedWaffe.tpWuerfel)
+      this.TPB.emit(this.selectedWaffe.tpBonus)
+      this.AT.emit(this.selectedWaffe.AT)
+      this.PA.emit(this.selectedWaffe.PA)
+      this.BF.emit(this.selectedWaffe.BF)
+    }
   }
 
   availableWaffen(): Waffe[] {
@@ -53,24 +54,13 @@ export class WaffenpickerComponent implements OnInit{
     }
     if (this.typus === Typus.Magier) {
       return [
-        {
-          name: "Dolch",
-          tpWuerfel: 1,
-          tpBonus: 1,
-          AT: 0,
-          PA: -4,
-          BF: 3,
-        },
-        {
-          name: "Zauberstab",
-          tpWuerfel: 1,
-          tpBonus: 2,
-          AT: -1,
-          PA: -3,
-          BF: 6,
-        },
+
       ]
     }
     return waffen.slice(0,10)
+  }
+
+  waffeDisabled(waffe: Waffe) {
+    return !waffe.typusDarf.includes(this.typus ?? Typus.Abenteurer)
   }
 }

@@ -1,0 +1,8 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.centerbox {
+  margin: auto;
+  width: 1300px
+}

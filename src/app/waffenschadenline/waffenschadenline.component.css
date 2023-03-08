@@ -4,8 +4,8 @@ span {
 }
 
 .box {
-  border: 1px black;
-  border-style: solid;
+  border: 1px solid black;
+  border-radius: 4px;
   padding: 4px;
   margin-right: 6px;
   margin-left: 10px;
@@ -16,5 +16,5 @@ div {
   padding: 6px;
 }
 strong  {
-  width: 0px;
+  width: 0;
 }

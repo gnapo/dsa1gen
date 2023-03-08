@@ -54,4 +54,8 @@ export class RuestungpickerComponent implements OnInit{
     }
     return ruestungen.slice(0,6)
   }
+
+  ruestungDisabled(state: Ruestung) {
+    return !state.typusDarf.includes(this.typus ?? Typus.Abenteurer)
+  }
 }

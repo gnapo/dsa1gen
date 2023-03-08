@@ -1,7 +1,10 @@
-div {
-  float: left;
-  border: 2px black;
-  border-style: solid;
-  width: 180px;
-  margin: 20px;
+mat-grid-list {
+  margin: auto;
+  margin-top: 10px;
+  max-width: 1300px;
+}
+
+mat-card {
+  width: 100%;
+  height: 100%;
 }

@@ -1,11 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="this.sendValues()">
-  <ul>
-    <select formControlName="ruestungState">
-      <option *ngFor="let state of availableRuestungen()" [ngValue]="state">
-        {{ state.name }}
-      </option>
-    </select>
+  <ul class="selectorbox">
+    <mat-form-field appearance="outline">
+      <mat-label>Waffe</mat-label>
+      <mat-select [(value)]="selectedRuestung" (selectionChange)="sendValues()">
+        <mat-option *ngFor="let state of ruestungen" [value]="state" [disabled]="ruestungDisabled(state)">
+          {{ state.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </ul>
-  <ul> Schild: <input type="checkbox" [checked]="this.hatSchild" (change)="changeShild()" ></ul>
+  <ul><mat-checkbox [checked]="this.hatSchild" (change)="changeShild()" >Schild</mat-checkbox></ul>
 </form>
 

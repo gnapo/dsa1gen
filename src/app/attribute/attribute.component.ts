@@ -33,7 +33,7 @@ export class AttributeComponent {
   }
   newHeld(): Held {
     return {
-      name: "neuer Abenteurer",
+      name: "",
       typus: undefined,
       stufe: 1,
       MU: this.randInt(8,13),
