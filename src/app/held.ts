@@ -1,4 +1,6 @@
 import {Typus} from "./typus";
+import {Waffe} from "./waffenpicker/waffe";
+import {Ruestung} from "./ruestungpicker/ruestung";
 export interface Held {
   name: string,
   stufe: number,
@@ -13,8 +15,12 @@ export interface Held {
   AT: number,
   PA: number,
 
-  RS: number,
-  schadensWuerfel: number,
-  waffenschaden: number,
+  ruestung: Ruestung,
+  hasSchild: boolean,
+  waffe: Waffe | undefined,
+
+  attrups: number
+  ATPAups: number
+  statups: number
 
 }

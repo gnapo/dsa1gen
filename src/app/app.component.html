@@ -1,4 +1,9 @@
-<mat-toolbar>    <div class="centerbox" >{{title}} <span style="float: right"><button mat-raised-button (click)="initialize()">Neu</button></span></div></mat-toolbar>
+<mat-toolbar>    <div class="centerbox" >{{title}}
+  <span style="float: right">
+    <button mat-raised-button (click)="save()">Speichern</button>
+    <button mat-raised-button (click)="load()">Laden</button>
+    <button mat-raised-button (click)="initialize()">Neu</button>
+  </span></div></mat-toolbar>
 <app-attribute #heldComponent></app-attribute>
 
 

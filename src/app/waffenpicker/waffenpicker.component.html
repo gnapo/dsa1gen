@@ -1,12 +1,10 @@
-<form [formGroup]="form" (ngSubmit)="this.sendValues()">
   <ul class="selectorbox">
     <mat-form-field appearance="outline">
       <mat-label>Waffe</mat-label>
-      <mat-select [(value)]="selectedWaffe" (selectionChange)="sendValues()">
+      <mat-select [(value)]="selectedWaffe" (selectionChange)="this.waffe.emit(this.selectedWaffe)" [compareWith]="sameName" >
         <mat-option *ngFor="let state of waffen" [value]="state" [disabled]="waffeDisabled(state)">
           {{ state.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </ul>
-</form>

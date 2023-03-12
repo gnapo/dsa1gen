@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Held} from "../held";
 import {Typus} from "../typus";
+import {ruestungen} from "../ruestungpicker/ruestungen";
 
 
 @Component({
@@ -15,18 +16,9 @@ export class AttributeComponent {
   attrups = 0
   ATPAups = 0
   statups = 0
-  ruestungGEmalus = 0
-  waffenATmod = 0
-  waffenPAmod = 0
 
   initialize(): void {
     this.held = this.newHeld()
-    this.statups = 0
-    this.attrups = 0
-    this.ATPAups = 0
-    this.ruestungGEmalus = 0
-    this.waffenATmod = 0
-    this.waffenPAmod = 0
   }
   randInt(min: number, max:number): number {
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -45,57 +37,50 @@ export class AttributeComponent {
       AsP: undefined,
       AT: 10,
       PA: 8,
-      RS: 1,
-      schadensWuerfel: 1,
-      waffenschaden: 3,
+      ruestung: ruestungen[1],
+      hasSchild: false,
+      waffe: undefined,
+      attrups: 0,
+      ATPAups: 0,
+      statups: 0,
     }
   }
 
   incrementMU() {
     this.held.MU += 1
-    this.attrups -= 1
+    this.held.attrups -= 1
   }
   incrementKL() {
     this.held.KL += 1
-    this.attrups -= 1
+    this.held.attrups -= 1
   }
   incrementCH() {
     this.held.CH += 1
-    this.attrups -= 1
+    this.held.attrups -= 1
   }
   incrementGE() {
     this.held.GE += 1
-    this.attrups -= 1
+    this.held.attrups -= 1
   }
   incrementKK() {
     this.held.KK += 1
-    this.attrups -= 1
+    this.held.attrups -= 1
   }
   incrementAT() {
     this.held.AT += 1
-    this.ATPAups -= 1
+    this.held.ATPAups -= 1
   }
   incrementPA() {
     this.held.PA += 1
-    this.ATPAups -= 1
+    this.held.ATPAups -= 1
   }
   incrementStufe() {
     this.held.stufe += 1
-    this.attrups += 1
-    this.ATPAups += 1
-    this.statups += 1
+    this.held.attrups += 1
+    this.held.ATPAups += 1
+    this.held.statups += 1
   }
 
-  setTypus(typus: Typus) {
-    this.held.typus = typus
-  }
-  setRS(RS: number) {
-    this.held.RS = RS
-  }
-
-  setRuestungGEmalus(minusGE: number) {
-    this.ruestungGEmalus= minusGE
-  }
   setLeP(lep: number) {
     if (this.held.stufe < 2) {
       this.held.LeP = lep
@@ -129,28 +114,27 @@ export class AttributeComponent {
     if (this.held.LeP) {
       this.held.LeP += this.randInt(1, 6)
     }
-    this.statups -= 1
+    this.held.statups -= 1
   }
 
   incrementAsP() {
     if (this.held.AsP) {
       this.held.AsP += this.randInt(1, 6)
     }
-    this.statups -= 1
+    this.held.statups -= 1
   }
 
-  setTPW(TPW: number) {
-    this.held.schadensWuerfel = TPW
+  calculateRS() {
+    const rs = this.held.ruestung?.RS ?? 1
+    return rs + (this.held.hasSchild ? 1 : 0);
   }
 
-  setTPB(TPB: number) {
-    this.held.waffenschaden = TPB
+  saveHeld() {
+    sessionStorage.setItem("savedHeld",JSON.stringify(this.held))
   }
 
-  setWaffenAT(waffenAT: number) {
-    this.waffenATmod = waffenAT
+  loadHeld() {
+    this.held = JSON.parse(sessionStorage.getItem("savedHeld") ?? "")
   }
-  setWaffenPA(waffenAT: number) {
-    this.waffenPAmod = waffenAT
-  }
+
 }

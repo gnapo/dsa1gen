@@ -2,29 +2,29 @@
   <mat-grid-tile colspan="1" rowspan="2">
     <mat-card>
       <mat-card-header><mat-card-title>Attribute</mat-card-title></mat-card-header>
-      <app-statline [value]="this.held.MU" (buttonClicked)="incrementMU()" [drawButton]="this.attrups > 0 && this.held.MU < 20" tt="Bestimmt Initiative" >MU</app-statline>
-      <app-statline [value]="this.held.KL" (buttonClicked)="incrementKL()" [drawButton]="this.attrups > 0 && this.held.KL < 20" tt="Für Zauber" >KL</app-statline>
-      <app-statline [value]="this.held.CH" (buttonClicked)="incrementCH()" [drawButton]="this.attrups > 0 && this.held.CH < 20" tt="Für Zauber" >CH</app-statline>
-      <app-statline [value]="this.held.GE+this.ruestungGEmalus" (buttonClicked)="incrementGE()" [drawButton]="this.attrups > 0 && this.held.GE < 20" tt="Werte ab 13 erhöhen AT um 1" >GE</app-statline>
-      <app-statline [value]="this.held.KK" (buttonClicked)="incrementKK()" [drawButton]="this.attrups > 0 && this.held.KK < 20" tt="Werte ab 13 erhöhen TP um je 1" >KK</app-statline>
-      <ul *ngIf="this.attrups > 0">Verfügbare Steigerungen: {{this.attrups}}</ul>
+      <app-statline [value]="this.held.MU" (buttonClicked)="incrementMU()" [drawButton]="this.held.attrups > 0 && this.held.MU < 20" tt="Bestimmt Initiative" >MU</app-statline>
+      <app-statline [value]="this.held.KL" (buttonClicked)="incrementKL()" [drawButton]="this.held.attrups > 0 && this.held.KL < 20" tt="Für Zauber" >KL</app-statline>
+      <app-statline [value]="this.held.CH" (buttonClicked)="incrementCH()" [drawButton]="this.held.attrups > 0 && this.held.CH < 20" tt="Für Zauber" >CH</app-statline>
+      <app-statline [value]="this.held.GE+this.held.ruestung.minusGE" (buttonClicked)="incrementGE()" [drawButton]="this.held.attrups > 0 && this.held.GE < 20" tt="Werte ab 13 erhöhen AT um 1" >GE</app-statline>
+      <app-statline [value]="this.held.KK" (buttonClicked)="incrementKK()" [drawButton]="this.held.attrups > 0 && this.held.KK < 20" tt="Werte ab 13 erhöhen TP um je 1" >KK</app-statline>
+      <ul *ngIf="this.held.attrups > 0">Verfügbare Steigerungen: {{this.held.attrups}}</ul>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="2">
     <mat-card>
       <mat-card-header><mat-card-title>Kampfwerte</mat-card-title></mat-card-header>
-      <app-statline [value]="this.held.AT+GEATbonus(this.held.GE)+this.waffenATmod" (buttonClicked)="incrementAT()" [drawButton]="this.ATPAups > 0 && this.held.AT < 18">AT</app-statline>
-      <app-statline [value]="this.held.PA+this.waffenPAmod" (buttonClicked)="incrementPA()" [drawButton]="this.ATPAups > 0 && this.held.PA <17" >PA</app-statline>
-      <app-waffenschadenline [TPW]="this.held.schadensWuerfel" [TPB]="this.held.waffenschaden+this.KKTPbonus(this.held.KK)"></app-waffenschadenline>
-      <app-statline [value]="this.held.RS" [drawButton]="false">RS</app-statline>
-      <ul *ngIf="this.ATPAups > 0">Verfügbare Steigerungen: {{this.ATPAups}}</ul>
+      <app-statline [value]="this.held.AT+GEATbonus(this.held.GE+this.held.ruestung.minusGE)+(this.held.waffe?.AT ?? 0)" (buttonClicked)="incrementAT()" [drawButton]="this.held.ATPAups > 0 && this.held.AT < 18">AT</app-statline>
+      <app-statline [value]="this.held.PA+(this.held.waffe?.PA ?? 0)" (buttonClicked)="incrementPA()" [drawButton]="this.held.ATPAups > 0 && this.held.PA <17" >PA</app-statline>
+      <app-waffenschadenline [TPW]="this.held.waffe?.tpWuerfel ?? 1" [TPB]="(this.held.waffe?.tpBonus ?? 3)+this.KKTPbonus(this.held. KK)"></app-waffenschadenline>
+      <app-statline [value]="calculateRS()" [drawButton]="false">RS</app-statline>
+      <ul *ngIf="this.held.ATPAups > 0">Verfügbare Steigerungen: {{this.held.ATPAups}}</ul>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="1">
     <mat-card *ngIf="this.held.typus">
-      <app-statline [value]="this.held.LeP ?? 0" (buttonClicked)="incrementLeP()" [drawButton]="this.statups > 0" tt="Um 1W6 erhöhen">LeP</app-statline>
-      <app-statline *ngIf="this.held.AsP" [value]="this.held.AsP" (buttonClicked)="incrementAsP()" [drawButton]="this.statups > 0" tt="Um 1W6 erhöhen">AsP</app-statline>
-      <ul *ngIf="this.statups > 0">Verfügbare Steigerungen: {{this.statups}}</ul>
+      <app-statline [value]="this.held.LeP ?? 0" (buttonClicked)="incrementLeP()" [drawButton]="this.held.statups > 0" tt="Um 1W6 erhöhen">LeP</app-statline>
+      <app-statline *ngIf="this.held.AsP" [value]="this.held.AsP" (buttonClicked)="incrementAsP()" [drawButton]="this.held.statups > 0" tt="Um 1W6 erhöhen">AsP</app-statline>
+      <ul *ngIf="this.held.statups > 0">Verfügbare Steigerungen: {{this.held.statups}}</ul>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="1">
@@ -34,13 +34,13 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="1">
     <mat-card *ngIf="this.held.typus">
-      <app-ruestungpicker [typus]="this.held.typus" (RS)="setRS($event)" (minusGE)="setRuestungGEmalus($event)"> </app-ruestungpicker>
-      <app-waffenpicker [typus]="this.held.typus" (TPW)="setTPW($event)" (TPB)="setTPB($event)" (AT)="setWaffenAT($event)" (PA)="setWaffenPA($event)"></app-waffenpicker>
+      <app-ruestungpicker [typus]="this.held.typus" [selectedRuestung]="this.held.ruestung" (ruestung)="this.held.ruestung=$event" [(schild)]="this.held.hasSchild"> </app-ruestungpicker>
+      <app-waffenpicker [typus]="this.held.typus" [selectedWaffe]="this.held.waffe" (waffe)="this.held.waffe=$event" ></app-waffenpicker>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="1" >
     <mat-card *ngIf="nichtFinalerTypus()">
-      <app-typuspicker [MU]="this.held.MU" [KL]="this.held.KL" [CH]="this.held.CH" [GE]="this.held.GE" [KK]="this.held.KK" [nachGenerierung]="this.held.stufe > 1" [typus]="this.held.typus" (changeTypus)="setTypus($event)" (setStartLeP)="setLeP($event)" (setStartAsP)="setAsP($event)" ></app-typuspicker>
+      <app-typuspicker [MU]="this.held.MU" [KL]="this.held.KL" [CH]="this.held.CH" [GE]="this.held.GE" [KK]="this.held.KK" [nachGenerierung]="this.held.stufe > 1" [typus]="this.held.typus" (changeTypus)="this.held.typus=$event" (setStartLeP)="setLeP($event)" (setStartAsP)="setAsP($event)" ></app-typuspicker>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
