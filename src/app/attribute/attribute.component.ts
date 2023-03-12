@@ -134,7 +134,10 @@ export class AttributeComponent {
   }
 
   loadHeld() {
-    this.held = JSON.parse(sessionStorage.getItem("savedHeld") ?? "")
+    const loaded = sessionStorage.getItem("savedHeld")
+    if (loaded){
+      this.held = JSON.parse(loaded)
+    }
   }
 
 }

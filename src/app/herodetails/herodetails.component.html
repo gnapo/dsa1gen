@@ -6,5 +6,5 @@
   </mat-form-field>
 </ul>
 <ul> Stufe: {{stufe}} <button mat-raised-button *ngIf="typus && stufe < 21" (click)="lvlup()">+</button></ul>
-<ul> Typus: {{typus}}</ul>
+<ul> Typus: {{typus ?? "noch kein Typus ausgewählt!"}}</ul>
 
