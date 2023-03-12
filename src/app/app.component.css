@@ -2,3 +2,7 @@
   margin: auto;
   width: 1300px;
 }
+
+.mat-mdc-raised-button {
+  margin: 2px
+}

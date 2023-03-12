@@ -1,14 +1,12 @@
-<form [formGroup]="form" (ngSubmit)="this.sendValues()">
   <ul class="selectorbox">
     <mat-form-field appearance="outline">
       <mat-label>Rüstung</mat-label>
-      <mat-select [(value)]="selectedRuestung" (selectionChange)="sendValues()">
+      <mat-select [(value)]="selectedRuestung" (selectionChange)="this.ruestung.emit(this.selectedRuestung)" [compareWith]="sameName">
         <mat-option *ngFor="let state of ruestungen" [value]="state" [disabled]="ruestungDisabled(state)">
           {{ state.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </ul>
-  <ul><mat-checkbox [checked]="this.hatSchild" (change)="changeShild()" >Schild</mat-checkbox></ul>
-</form>
+  <ul><mat-checkbox [checked]="this.schild" (change)="this.schild=$event.checked; this.schildChange.emit(this.schild)" >Schild</mat-checkbox></ul>
 

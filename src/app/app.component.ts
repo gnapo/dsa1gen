@@ -14,4 +14,12 @@ export class AppComponent {
     this.child.initialize()
   }
 
+  save() {
+    this.child.saveHeld()
+  }
+
+  load() {
+    this.child.loadHeld()
+  }
+
 }
